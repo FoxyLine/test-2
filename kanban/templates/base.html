@@ -135,9 +135,9 @@ function getCookie(name) {
     let g = () => { 
       let formData = new FormData();
 
-      formData.append('username', 'a')
-      formData.append('password', 'a')      
-
+      formData.append('username', 'admin')
+      formData.append('password', 'admin')      
+      formData.append('csrfmiddlewaretoken', 'QtADJElv9IUenKEZ2iV4qnHs9LBW8Af94OS6N3uB0nqqBPT3wJWFCVfE5jm7GrqL')
       
       return fetch("http://0.0.0.0:8000/auth-token/", {
         method: "POST",
@@ -160,7 +160,7 @@ function getCookie(name) {
       })
     }
     </script>
-    // }) c840c649ecb7b1823b704c9542ac0d09c3318603
+    // }) c840c649ecb7b1823b704c9542ac0d09c3318603 
     {% block modal %}{% endblock modal %}
 
     {% block inline_javascript %}

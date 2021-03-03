@@ -12,6 +12,40 @@ export const applyDrag = (arr, dragResult) => {
   return result;
 };
 
+export  const loadItems1 = () => {
+  let result = []
+
+ 
+  let formData = new FormData();
+
+
+      
+  let response = fetch("http://0.0.0.0:8000/api/cards/", {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      Authorization: "Token "+ localStorage.getItem('token')
+    }        
+  })
+
+  return response
+}
+
+  // let request = fetch(
+    
+  // )
+  // if (localStorage.getItem(collection)) {
+  //   try {
+  //     result = JSON.parse(localStorage.getItem(collection));
+  //   } catch(e) {
+  //     localStorage.removeItem(collection);
+  //   }
+  // }
+  // console.log(result);
+  // return result;
+
+
+
 export const loadItems = (collection) => {
   let result = []
   if (localStorage.getItem(collection)) {
@@ -21,6 +55,7 @@ export const loadItems = (collection) => {
       localStorage.removeItem(collection);
     }
   }
+  console.log(result);
   return result;
 };
 

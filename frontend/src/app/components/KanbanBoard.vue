@@ -7,7 +7,7 @@
 					<div class="draggable-item">
 						<div class="delete" @click="deleteItem('items0', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.header}}</p>
+						<p>{{item.text}}</p>
 					</div>
 				</Draggable>
 			</Container>
@@ -69,10 +69,30 @@
 
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, loadItems, saveItems } from "./utils";
+import { applyDrag, loadItems, saveItems, loadItems1 } from "./utils";
+
+import axios from 'axios';
+document.it = loadItems1()
+console.log(document.it);
+
 export default {
 	name: "KanbanBoard",
 	components: { Container, Draggable },
+	mounted() {
+		let response = fetch("http://0.0.0.0:8000/api/cards/", {
+			method: "GET",
+			credentials: "same-origin",
+			headers: {
+			Authorization: "Token "+ localStorage.getItem('token')
+			}        
+  		}).then(
+			  result => 
+				  result.json().then(d => {
+					  let item0 = d.RED
+					  this.items0 = [{id: item0[0].id, text: item0[0].text }]
+					  })
+			)
+	},
 	data: function() {
 		return {
 			items0: loadItems('items0'),
@@ -84,7 +104,7 @@ export default {
 					{ display: 'none'},
 					{ display: 'none'},
 					{ display: 'none'},
-					{ display: 'none'}
+					{ display: 'none'} 
 				],
 			addAnotherCardStyle: [ 
 					{ display: 'block'},

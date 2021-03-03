@@ -31,8 +31,10 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "object-assign": "^4.1.1",
     "smooth-dnd": "0.5.9",
+    "start": "^5.1.0",
     "vue": "^2.5.2"
   },
   "devDependencies": {
