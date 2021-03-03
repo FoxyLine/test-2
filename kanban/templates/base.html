@@ -116,11 +116,51 @@ function getCookie(name) {
 
     let c = () => (console.log(document.cookie))
 
-    let f = () => { return fetch("auth-token/", {method: "POST", headers: {
-    'Content-Type': 'application/json'}, 
-    credentials: "same-origin",
-    body: JSON.stringify({username: "admin",password: "admin"})})}
+    let f = () => { 
+      let formData = new FormData();
+
+      formData.append('username', 'asdasdsadasdasdsad')
+      formData.append('password1', 'sevabone5')
+      formData.append('password2', 'sevabone5')
+      formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value)
+
+      
+      return fetch("", {
+        method: "POST",
+        credentials: "same-origin",
+        body: formData
+      })
+    }
+
+    let g = () => { 
+      let formData = new FormData();
+
+      formData.append('username', 'a')
+      formData.append('password', 'a')      
+
+      
+      return fetch("http://0.0.0.0:8000/auth-token/", {
+        method: "POST",
+        credentials: "same-origin",
+        body: formData
+      })
+    }
+
+
+    let api = () => { 
+      let formData = new FormData();
+
+      
+      return fetch("http://0.0.0.0:8000/api/cards/", {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          Authorization: "Token c840c649ecb7b1823b704c9542ac0d09c3318603"
+        }        
+      })
+    }
     </script>
+    // }) c840c649ecb7b1823b704c9542ac0d09c3318603
     {% block modal %}{% endblock modal %}
 
     {% block inline_javascript %}

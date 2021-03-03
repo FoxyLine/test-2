@@ -16,6 +16,7 @@ urlpatterns = [
     # User management
     path("users/", include("kanban.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    path('test', TemplateView.as_view(template_name="index.html"))
     # Your stuff: custom urls includes go here
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
