@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -8,9 +9,18 @@ from .serializers import CardDetailSerializer
 
 from ..models import Card
 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+
+    def enforce_csrf(self, request):
+        return  # To not perform the csrf check previously happening
+
 
 class CardListViewSet(ViewSet):
     serializer_class = CardDetailSerializer
+    authentication_classes = (TokenAuthentication, BasicAuthentication)
+
     queryset = Card.objects.all()
 
     def list(self, request):
@@ -25,6 +35,7 @@ class CardListViewSet(ViewSet):
 
         return Response(res, status=200)
 
+    @csrf_exempt
     def create(self, request):
         
         serializer = CardDetailSerializer(
@@ -35,6 +46,7 @@ class CardListViewSet(ViewSet):
 
         return Response(serializer.data)
 
+    @csrf_exempt
     def destroy(self, request, pk=None):
         card = get_object_or_404(Card, pk=pk)
         card.delete()
@@ -42,6 +54,7 @@ class CardListViewSet(ViewSet):
         return Response(card.id, status=200)
 
     @action(detail=True, methods=["PUT"])
+    @csrf_exempt
     def change_type(self, request, pk=None):
         type = request.GET["to"]
         card = get_object_or_404(Card, pk=pk)

@@ -61,9 +61,6 @@
                     <!-- <li class="nav-item active">
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
                     {% if request.user.is_authenticated %}
                     <!-- <li class="nav-item">
                 {# URL provided by django-allauth/account/urls.py #}
@@ -107,51 +104,7 @@
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
 
-        let c = () => (console.log(document.cookie))
-
-        let f = () => {
-            let formData = new FormData();
-
-            formData.append('username', 'asdasdsadasdasdsad')
-            formData.append('password1', 'sevabone5')
-            formData.append('password2', 'sevabone5')
-            formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value)
-
-
-            return fetch("", {
-                method: "POST",
-                credentials: "same-origin",
-                body: formData
-            })
-        }
-
-        let g = () => {
-            let formData = new FormData();
-
-            formData.append('username', 'a')
-            formData.append('password', 'a')
-            formData.append('csrfmiddlewaretoken', 'TtD6fyLxtV83sHs8Di3DljcFRR7gOvViEtZdyfL2lTMNnVXUOiM4fxWldVDhh1Hz')
-
-            return fetch("http://0.0.0.0:8000/auth-token/", {
-                method: "POST",
-                credentials: "same-origin",
-                body: formData
-            })
-        }
-
-
-        let api = () => {
-            let formData = new FormData();
-
-
-            return fetch("http://0.0.0.0:8000/api/cards/", {
-                method: "GET",
-                credentials: "same-origin",
-                headers: {
-                    Authorization: "Token c840c649ecb7b1823b704c9542ac0d09c3318603"
-                }
-            })
-        }
+    
     </script>
 
     {% block modal %}{% endblock modal %} {% block inline_javascript %} {# Script tags with only code, no src (defer by default) #} {% endblock inline_javascript %}

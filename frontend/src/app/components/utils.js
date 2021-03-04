@@ -1,4 +1,4 @@
-const DOMAIN = "http://0.0.0.0:8000/"
+const DOMAIN = "http://localhost:8000/"
 const API_ROOT = DOMAIN + "api/"
 
 
@@ -97,7 +97,7 @@ export const signin = (body) => {
     formData.append('password', body.password)
     formData.append('csrfmiddlewaretoken', getCookie('csrftoken'))
 
-    return fetch("http://0.0.0.0:8000/auth-token/", {
+    return fetch(DOMAIN +"auth-token/", {
             method: "POST",
             credentials: "same-origin",
             body: formData

@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=kanban
+POSTGRES_USER=eKXLLJVtIeeKpaOFAyafgycYcxKUXRJw
+POSTGRES_PASSWORD=66dmJla1KA2q6PvJncjHNeHew3yImuriwSPhlVBDIpiMiJX2NQxhCpFnF3YEj8eD

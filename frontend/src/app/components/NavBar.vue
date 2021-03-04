@@ -5,13 +5,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-
-              <router-link class="nav-link" to="/about">About</router-link>              
             </li>
 
             
             <li v-if="token != null"  class="nav-item">              
-              <a class="nav-link" href="" v-on:click="logout">Sign Out</a>
+              <a class="nav-link" href="accounts/logout/" v-on:click="logout">Sign Out</a>
             </li>
           
               <li v-if="token == null" class="nav-item">
@@ -44,6 +42,7 @@ export default {
     methods: {
       logout: function() {
         localStorage.removeItem('token')
+        document.cookie = ""
       }
     }
 }

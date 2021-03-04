@@ -272,5 +272,5 @@ kanban/media/
 
 
 .ipython/
-.env
-.envs/*
+# .env
+# .envs/*
