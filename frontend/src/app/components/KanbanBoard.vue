@@ -1,5 +1,5 @@
 <template>
-	<div class="kanban-board">
+	<div v-if="token" class="kanban-board">
 		<div class="row">
 			<h3 class="header orange">On Hold ({{RED.length}})</h3>
 			<Container :group-name="'1'" :get-child-payload="getChildPayload0" @drop="onDrop('RED', $event)">
@@ -65,6 +65,9 @@
 			<button class="add-another-card" @click="showAddACardTextarea(3)" v-bind:style="addAnotherCardStyle[3]">Добавить карточку</button>
 		</div>
 	</div>
+	<div v-else >
+		<p class="no-auth"><a href='accounts/signup/'>signup</a> or <a href='signin'>signin</a> before using kanban</p>
+	</div>
 </template>
 
 <script>
@@ -92,7 +95,7 @@ export default {
 	},
 	data: function() {
 		return {
-
+			token: localStorage.getItem('token'),
 			RED: [],
 			BLUE: [],
 			YELLOW: [],

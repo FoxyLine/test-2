@@ -61,6 +61,16 @@ a {
     text-decoration: none;
     color: white;
 }
+.no-auth {
+    text-align:center;
+    color: white;
+}
+
+.no-auth a,
+.no-auth a:visited {
+    text-align:center;
+    color: rgb(145, 215, 255);
+}
 
 a:visited,
 a:active,
