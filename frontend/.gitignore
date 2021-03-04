@@ -13,4 +13,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-vue-smooth-dnd/dist
+# vue-smooth-dnd/dist
