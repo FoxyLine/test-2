@@ -1,66 +1,66 @@
 <template>
 	<div class="kanban-board">
 		<div class="row">
-			<h3 class="header orange">On Hold ({{items0.length}})</h3>
-			<Container :group-name="'1'" :get-child-payload="getChildPayload0" @drop="onDrop('items0', $event)">
-				<Draggable v-for="item in items0" :key="item.id">
+			<h3 class="header orange">On Hold ({{RED.length}})</h3>
+			<Container :group-name="'1'" :get-child-payload="getChildPayload0" @drop="onDrop('RED', $event)">
+				<Draggable v-for="item in RED" :key="item.id">
 					<div class="draggable-item">
-						<div class="delete" @click="deleteItem('items0', item)"></div>
+						<div class="delete" @click="deleteItem('RED', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
 						<p>{{item.text}}</p>
 					</div>
 				</Draggable>
 			</Container>
 			<textarea id="title0" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[0]"></textarea>
-			<button class="add-a-card" @click="addItem('items0')" v-bind:style="addACardStyle[0]">Добавить карточку</button>
+			<button class="add-a-card" @click="addItem('RED')" v-bind:style="addACardStyle[0]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[0]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(0)" v-bind:style="addAnotherCardStyle[0]">Добавить карточку</button>
 		</div>
 		<div class="row">
-			<h3 class="header blue">In Progress ({{items1.length}})</h3>
-			<Container :group-name="'1'" :get-child-payload="getChildPayload1" @drop="onDrop('items1', $event)">
-				<Draggable v-for="item in items1" :key="item.id">
+			<h3 class="header blue">In Progress ({{BLUE.length}})</h3>
+			<Container :group-name="'1'" :get-child-payload="getChildPayload1" @drop="onDrop('BLUE', $event)">
+				<Draggable v-for="item in BLUE" :key="item.id">
 					<div class="draggable-item">
-						<div class="delete" @click="deleteItem('items1', item)"></div>
+						<div class="delete" @click="deleteItem('BLUE', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.header}}</p>
+						<p>{{item.text}}</p>
 					</div>
 				</Draggable>
 			</Container>
 			<textarea id="title1" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[1]"></textarea>
-			<button class="add-a-card" @click="addItem('items1')" v-bind:style="addACardStyle[1]">Добавить карточку</button>
+			<button class="add-a-card" @click="addItem('BLUE')" v-bind:style="addACardStyle[1]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[1]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(1)" v-bind:style="addAnotherCardStyle[1]">Добавить карточку</button>
 		</div>
 		<div class="row">
-			<h3 class="header yellow">Needs Review ({{items2.length}})</h3>
-			<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)"> 
-				<Draggable v-for="item in items2" :key="item.id">
+			<h3 class="header yellow">Needs Review ({{YELLOW.length}})</h3>
+			<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('YELLOW', $event)"> 
+				<Draggable v-for="item in YELLOW" :key="item.id">
 					<div class="draggable-item">
-						<div class="delete" @click="deleteItem('items2', item)"></div>
+						<div class="delete" @click="deleteItem('YELLOW', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.header}}</p>
+						<p>{{item.text}}</p>
 					</div>
 				</Draggable>
 			</Container>
 			<textarea id="title2" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[2]"></textarea>
-			<button class="add-a-card" @click="addItem('items2')" v-bind:style="addACardStyle[2]">Добавить карточку</button>
+			<button class="add-a-card" @click="addItem('YELLOW')" v-bind:style="addACardStyle[2]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[2]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(2)" v-bind:style="addAnotherCardStyle[2]">Добавить карточку</button>
 		</div>
 		<div class="row">
-			<h3 class="header green">Approved ({{items3.length}})</h3>
-			<Container :group-name="'1'" :get-child-payload="getChildPayload3" @drop="onDrop('items3', $event)">
-				<Draggable v-for="item in items3" :key="item.id">
+			<h3 class="header green">Approved ({{GREEN.length}})</h3>
+			<Container :group-name="'1'" :get-child-payload="getChildPayload3" @drop="onDrop('GREEN', $event)">
+				<Draggable v-for="item in GREEN" :key="item.id">
 					<div class="draggable-item">
-						<div class="delete" @click="deleteItem('items3', item)"></div>
+						<div class="delete" @click="deleteItem('GREEN', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.header}}</p>
+						<p>{{item.text}}</p>
 					</div>
 				</Draggable>
 			</Container>
 			<textarea id="title3" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[3]"></textarea>
-			<button class="add-a-card" @click="addItem('items3')" v-bind:style="addACardStyle[3]">Добавить карточку</button>
+			<button class="add-a-card" @click="addItem('GREEN')" v-bind:style="addACardStyle[3]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[3]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(3)" v-bind:style="addAnotherCardStyle[3]">Добавить карточку</button>
 		</div>
@@ -69,36 +69,34 @@
 
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, loadItems, saveItems, loadItems1 } from "./utils";
-
-import axios from 'axios';
-document.it = loadItems1()
-console.log(document.it);
+import { applyDrag, loadCards, createCard, deleteCard, moveCard} from "./utils";
 
 export default {
 	name: "KanbanBoard",
 	components: { Container, Draggable },
 	mounted() {
-		let response = fetch("http://0.0.0.0:8000/api/cards/", {
-			method: "GET",
-			credentials: "same-origin",
-			headers: {
-			Authorization: "Token "+ localStorage.getItem('token')
-			}        
-  		}).then(
-			  result => 
-				  result.json().then(d => {
-					  let item0 = d.RED
-					  this.items0 = [{id: item0[0].id, text: item0[0].text }]
-					  })
-			)
+		let cards = loadCards();
+		console.log(cards);
+		cards.then(
+			result => {
+				// console.log(result);
+				if (result.RED) {
+					this.RED = result.RED
+					this.BLUE = result.BLUE
+					this.YELLOW = result.YELLOW
+					this.GREEN = result.GREEN
+				}
+			}
+		)
+			
 	},
 	data: function() {
 		return {
-			items0: loadItems('items0'),
-			items1: loadItems('items1'),
-			items2: loadItems('items2'),
-			items3: loadItems('items3'),
+
+			RED: [],
+			BLUE: [],
+			YELLOW: [],
+			GREEN: [],
 			newCardHeader: '',
 			addACardStyle: [ 
 					{ display: 'none'},
@@ -118,26 +116,34 @@ export default {
 		onDrop: function(collection, dropResult) {
 			this.hideAddACardTextarea();
 			this[collection] = applyDrag(this[collection], dropResult);
-			saveItems(collection, this[collection]);
+			if (dropResult.addedIndex != null) {
+				let card = dropResult.payload
+				moveCard(card, collection, dropResult.addedIndex)
+			}
+
+			console.log(dropResult);
+			
 		},
+
 		getChildPayload0: function(index) {
-			return this.items0[index];
+			return this.RED[index];
 		},
 		getChildPayload1: function(index) {
-			return this.items1[index];
+			return this.BLUE[index];
 		},
 		getChildPayload2: function(index) {
-			return this.items2[index];
+			return this.YELLOW[index];
 		},
 		getChildPayload3: function(index) {
-			return this.items3[index];
+			return this.GREEN[index];
 		},
 		addItem: function(collection) {
 			if (this.newCardHeader) {
-				const d = new Date();
-				const newID = d.getTime();
-				this[collection].push({ id: newID, header: this.newCardHeader });
-				saveItems(collection, this[collection]);
+				let card = createCard(this.newCardHeader, collection)
+				card.then(
+					cardData => this[collection].push(cardData)
+				)								
+
 				this.hideAddACardTextarea();
 			}
 		},
@@ -145,8 +151,9 @@ export default {
 			let index = this[collection].map(x => {
 				return x.id;
 			}).indexOf(item.id);
+			
 			this[collection].splice(index, 1);
-			saveItems(collection, this[collection]);
+			deleteCard(item.id)			
 		},
 		hideAddACardTextarea: function() {
 			this.newCardHeader = '';

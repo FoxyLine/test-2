@@ -26,13 +26,11 @@ class CardListViewSet(ViewSet):
         return Response(res, status=200)
 
     def create(self, request):
-        print(dir(request.POST))
         
         serializer = CardDetailSerializer(
             data=request.data)
 
         serializer.is_valid()
-        print(serializer.errors)
         serializer.save(user=request.user)
 
         return Response(serializer.data)
@@ -65,11 +63,11 @@ class CardListViewSet(ViewSet):
 
         card.set_order(order)
 
-        return Response(status=404)
+        serializer = CardDetailSerializer(card)
+        return Response(serializer.data)
 
     @action(detail=True, methods=["PUT"])
     def change_order(self, request, pk=None):
-        print(request.GET)
         try:
             order = request.GET["to"]            
         except:

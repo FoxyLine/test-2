@@ -35,7 +35,8 @@
     "object-assign": "^4.1.1",
     "smooth-dnd": "0.5.9",
     "start": "^5.1.0",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -1,0 +1,50 @@
+<template>
+    <div class="navbar-root">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/">kanban</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+
+              <router-link class="nav-link" to="/about">About</router-link>              
+            </li>
+
+            
+            <li v-if="token != null"  class="nav-item">              
+              <a class="nav-link" href="" v-on:click="logout">Sign Out</a>
+            </li>
+          
+              <li v-if="token == null" class="nav-item">
+                <a class="nav-link" href="accounts/signup/">Sign Up</a>  
+              </li>
+              <li v-if="token == null" class="nav-item">
+                <router-link class="nav-link" to="/signin">Sign In</router-link>   
+              </li>
+            
+
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+    
+</template>
+
+<script>
+export default {
+    name: "NavBar",
+    data: function() {
+        return {
+            text: "text",
+            token: localStorage.getItem('token') || null
+
+        }
+    },
+
+    methods: {
+      logout: function() {
+        localStorage.removeItem('token')
+      }
+    }
+}
+</script>
