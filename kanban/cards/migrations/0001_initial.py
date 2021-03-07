@@ -15,12 +15,37 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Cards',
+            name="Cards",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('card', models.CharField(choices=[('RED', 'ON_HOLD'), ('BLUE', 'IN_PROGRESS'), ('YELLOW', 'NEED_REVIEW'), ('GREEN', 'APPROVED')], max_length=8)),
-                ('text', models.TextField()),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "card",
+                    models.CharField(
+                        choices=[
+                            ("RED", "ON_HOLD"),
+                            ("BLUE", "IN_PROGRESS"),
+                            ("YELLOW", "NEED_REVIEW"),
+                            ("GREEN", "APPROVED"),
+                        ],
+                        max_length=8,
+                    ),
+                ),
+                ("text", models.TextField()),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

@@ -7,17 +7,17 @@ import kanban.cards.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cards', '0003_auto_20210302_1354'),
+        ("cards", "0003_auto_20210302_1354"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='card',
-            options={'ordering': ['order']},
+            name="card",
+            options={"ordering": ["order"]},
         ),
         migrations.AddField(
-            model_name='card',
-            name='order',
+            model_name="card",
+            name="order",
             field=kanban.cards.fields.OrderField(blank=True, default=0),
             preserve_default=False,
         ),

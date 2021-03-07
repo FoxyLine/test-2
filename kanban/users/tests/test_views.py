@@ -10,11 +10,7 @@ from django.urls import reverse
 from kanban.users.forms import UserChangeForm
 from kanban.users.models import User
 from kanban.users.tests.factories import UserFactory
-from kanban.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from kanban.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
