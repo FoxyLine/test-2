@@ -8,7 +8,7 @@
             </li>
 
             
-            <li v-if="token != null"  class="nav-item">              
+            <li v-if="token != 0"  class="nav-item">              
               <a class="nav-link" href="accounts/logout/" v-on:click="logout">Sign Out</a>
             </li>
           
@@ -16,7 +16,7 @@
                 <a class="nav-link" href="accounts/signup/">Sign Up</a>  
               </li>
               <li v-if="token == null" class="nav-item">
-                <router-link class="nav-link" to="/signin">Sign In</router-link>   
+                <a class="nav-link" href="accounts/login/">Sign In </a>  
               </li>
           </ul>
         </div>

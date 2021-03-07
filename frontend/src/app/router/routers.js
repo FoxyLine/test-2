@@ -1,17 +1,12 @@
 import Base from '../../app';
-import { Signin, KanbanBoard } from '../components';
+import { KanbanBoard } from '../components';
 
 
 export default [{
     path: '/',
     component: Base,
     children: [{
-            path: '/',
-            component: KanbanBoard
-        },
-        {
-            path: 'signin',
-            component: Signin
-        }
-    ]
+        path: '/',
+        component: KanbanBoard
+    }, ]
 }, ]

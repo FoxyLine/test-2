@@ -74,13 +74,13 @@
 		</div>
 	</div>
 	<div v-else >
-		<p class="no-auth"><a href='accounts/signup/'>signup</a> or <a href='signin'>signin</a> before using kanban</p>
+		<p class="no-auth"><a href='accounts/signup/'>signup</a> or <a href='accounts/login/'>signin</a> before using kanban</p>
 	</div>
 </template>
 
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, loadCards, createCard, deleteCard, moveCard} from "./utils";
+import { applyDrag, loadCards, createCard, deleteCard, moveCard, getCsrf} from "./utils";
 
 export default {
 	name: "KanbanBoard",
@@ -101,7 +101,11 @@ export default {
 	},
 	data: function() {
 		return {
-			token: localStorage.getItem('token'),
+			token: getCsrf().then(result => {
+				this.token=result.csrfToken;
+				document.cookie = `csrftoken=${result.csrfToken}`
+				localStorage.setItem('csrfToken', result.csrfToken)
+				}),
 			RED: [],
 			BLUE: [],
 			YELLOW: [],

@@ -77,7 +77,7 @@
                     </li>
                     <li class="nav-item">
                         {# URL provided by django-allauth/account/urls.py #}
-                        <a id="log-in-link" class="nav-link" href="/signin">Sign In</a>
+                        <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">Sign In</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -103,8 +103,6 @@
             ));
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
-
-    
     </script>
 
     {% block modal %}{% endblock modal %} {% block inline_javascript %} {# Script tags with only code, no src (defer by default) #} {% endblock inline_javascript %}

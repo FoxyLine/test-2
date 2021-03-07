@@ -1,4 +1,4 @@
-const DOMAIN = "http://0.0.0.0:8000/"
+const DOMAIN = "http://localhost:8000/"
 const API_ROOT = DOMAIN + "api/"
 
 
@@ -22,7 +22,8 @@ export let createCard = (text, typeCard) => {
         credentials: "same-origin",
         headers: {
             Authorization: "Token " + localStorage.getItem('token'),
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
             text: text,
@@ -41,7 +42,9 @@ export let moveCard = (card, typeCard, newOrder) => {
         credentials: "same-origin",
         headers: {
             Authorization: "Token " + localStorage.getItem('token'),
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRFToken': getCookie('csrftoken'),
+
         },
         body: JSON.stringify({
             type: typeCard,
@@ -60,7 +63,9 @@ export let deleteCard = (index) => {
         credentials: "same-origin",
         headers: {
             Authorization: "Token " + localStorage.getItem('token'),
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRFToken': getCookie('csrftoken'),
+
         }
     })
 }
@@ -71,7 +76,8 @@ export const loadCards = () => {
         method: "GET",
         credentials: "same-origin",
         headers: {
-            Authorization: "Token " + localStorage.getItem('token')
+            // Authorization: "Token " + localStorage.getItem('token')
+
         }
     }).then(response => {
         return response.json()
@@ -107,5 +113,15 @@ export const signin = (body) => {
             body: formData
         })
         .then(response => response.json())
+
+}
+
+export const getCsrf = () => {
+    return fetch(DOMAIN + "csrf-token/", {
+            method: "GET",
+            credentials: "same-origin"
+        })
+        .then(response => response.json())
+
 
 }
