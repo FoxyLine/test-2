@@ -7,11 +7,13 @@
 					<div class="draggable-item">
 						<div class="delete" @click="deleteItem('RED', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.text}}</p>
+						<p class="card-text">{{item.text}}</p>
+						<p class="card-time">created: {{item.create_date}}</p>
+						<p class="card-time">updated: {{item.update_date}}</p>
 					</div>
 				</Draggable>
 			</Container>
-			<textarea id="title0" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[0]"></textarea>
+			<textarea id="title0" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardText" v-bind:style="addACardStyle[0]"></textarea>
 			<button class="add-a-card" @click="addItem('RED')" v-bind:style="addACardStyle[0]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[0]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(0)" v-bind:style="addAnotherCardStyle[0]">Добавить карточку</button>
@@ -23,11 +25,13 @@
 					<div class="draggable-item">
 						<div class="delete" @click="deleteItem('BLUE', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.text}}</p>
+						<p class="card-text">{{item.text}}</p>
+						<p class="card-time">created: {{item.create_date}}</p>
+						<p class="card-time">updated: {{item.update_date}}</p>						
 					</div>
 				</Draggable>
 			</Container>
-			<textarea id="title1" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[1]"></textarea>
+			<textarea id="title1" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardText" v-bind:style="addACardStyle[1]"></textarea>
 			<button class="add-a-card" @click="addItem('BLUE')" v-bind:style="addACardStyle[1]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[1]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(1)" v-bind:style="addAnotherCardStyle[1]">Добавить карточку</button>
@@ -39,11 +43,13 @@
 					<div class="draggable-item">
 						<div class="delete" @click="deleteItem('YELLOW', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.text}}</p>
+						<p class="card-text">{{item.text}}</p>
+						<p class="card-time">created: {{item.create_date}}</p>
+						<p class="card-time">updated: {{item.update_date}}</p>						
 					</div>
 				</Draggable>
 			</Container>
-			<textarea id="title2" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[2]"></textarea>
+			<textarea id="title2" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardText" v-bind:style="addACardStyle[2]"></textarea>
 			<button class="add-a-card" @click="addItem('YELLOW')" v-bind:style="addACardStyle[2]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[2]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(2)" v-bind:style="addAnotherCardStyle[2]">Добавить карточку</button>
@@ -55,11 +61,13 @@
 					<div class="draggable-item">
 						<div class="delete" @click="deleteItem('GREEN', item)"></div>
 						<p><b class="id">id: </b>{{item.id}}</p>
-						<p>{{item.text}}</p>
+						<p class="card-text">{{item.text}}</p>
+						<p class="card-time">created: {{item.create_date}}</p>
+						<p class="card-time">updated: {{item.update_date}}</p>						
 					</div>
 				</Draggable>
 			</Container>
-			<textarea id="title3" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardHeader" v-bind:style="addACardStyle[3]"></textarea>
+			<textarea id="title3" class="card-title-textarea" rows="5" placeholder="Ввести заголовок для этой карточки" v-model="newCardText" v-bind:style="addACardStyle[3]"></textarea>
 			<button class="add-a-card" @click="addItem('GREEN')" v-bind:style="addACardStyle[3]">Добавить карточку</button>
 			<button class="cancel" @click="hideAddACardTextarea()" v-bind:style="addACardStyle[3]"></button>
 			<button class="add-another-card" @click="showAddACardTextarea(3)" v-bind:style="addAnotherCardStyle[3]">Добавить карточку</button>
@@ -79,10 +87,8 @@ export default {
 	components: { Container, Draggable },
 	mounted() {
 		let cards = loadCards();
-		console.log(cards);
 		cards.then(
 			result => {
-				// console.log(result);
 				if (result.RED) {
 					this.RED = result.RED
 					this.BLUE = result.BLUE
@@ -100,7 +106,7 @@ export default {
 			BLUE: [],
 			YELLOW: [],
 			GREEN: [],
-			newCardHeader: '',
+			newCardText: '',
 			addACardStyle: [ 
 					{ display: 'none'},
 					{ display: 'none'},
@@ -116,18 +122,15 @@ export default {
 		};
 	},
 	methods: {
-		onDrop: function(collection, dropResult) {
+		onDrop: function(typeCard, dropResult) {
 			this.hideAddACardTextarea();
-			this[collection] = applyDrag(this[collection], dropResult);
+			this[typeCard] = applyDrag(this[typeCard], dropResult);
 			if (dropResult.addedIndex != null) {
 				let card = dropResult.payload
-				moveCard(card, collection, dropResult.addedIndex)
-			}
-
-			console.log(dropResult);
-			
+				let newOrder = dropResult.addedIndex
+				moveCard(card, typeCard, newOrder)
+			}			
 		},
-
 		getChildPayload0: function(index) {
 			return this.RED[index];
 		},
@@ -140,26 +143,26 @@ export default {
 		getChildPayload3: function(index) {
 			return this.GREEN[index];
 		},
-		addItem: function(collection) {
-			if (this.newCardHeader) {
-				let card = createCard(this.newCardHeader, collection)
+		addItem: function(typeCard) {
+			if (this.newCardText) {
+				let card = createCard(this.newCardText, typeCard)
 				card.then(
-					cardData => this[collection].push(cardData)
+					cardData => this[typeCard].push(cardData)
 				)								
 
 				this.hideAddACardTextarea();
 			}
 		},
-		deleteItem: function(collection, item) {
-			let index = this[collection].map(x => {
+		deleteItem: function(typeCard, item) {
+			let index = this[typeCard].map(x => {
 				return x.id;
 			}).indexOf(item.id);
 			
-			this[collection].splice(index, 1);
+			this[typeCard].splice(index, 1);
 			deleteCard(item.id)			
 		},
 		hideAddACardTextarea: function() {
-			this.newCardHeader = '';
+			this.newCardText = '';
 			for(let i = 0; i < this.addACardStyle.length; i++) {
 				this.addACardStyle[i].display = 'none';
 			}

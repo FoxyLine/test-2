@@ -1,4 +1,4 @@
-const DOMAIN = "http://localhost:8000/"
+const DOMAIN = "http://0.0.0.0:8000/"
 const API_ROOT = DOMAIN + "api/"
 
 
@@ -16,7 +16,7 @@ export const applyDrag = (arr, dragResult) => {
     return result;
 };
 
-export let createCard = (text, collection) => {
+export let createCard = (text, typeCard) => {
     return fetch(API_ROOT + "cards/", {
         method: "POST",
         credentials: "same-origin",
@@ -26,7 +26,7 @@ export let createCard = (text, collection) => {
         },
         body: JSON.stringify({
             text: text,
-            type: collection
+            type: typeCard
         })
     }).then(
         response => {
@@ -35,14 +35,18 @@ export let createCard = (text, collection) => {
     )
 }
 
-export let moveCard = (card, collection, newIndex) => {
-    return fetch(API_ROOT + `cards/${card.id}/change_desk/?type=${collection}&order=${newIndex}`, {
+export let moveCard = (card, typeCard, newOrder) => {
+    return fetch(API_ROOT + `cards/${card.id}/change_desk/`, {
         method: "PUT",
         credentials: "same-origin",
         headers: {
             Authorization: "Token " + localStorage.getItem('token'),
             'Content-Type': 'application/json;charset=utf-8'
-        }
+        },
+        body: JSON.stringify({
+            type: typeCard,
+            order: newOrder,
+        })
     }).then(
         response => {
             return response.json()
@@ -97,7 +101,7 @@ export const signin = (body) => {
     formData.append('password', body.password)
     formData.append('csrfmiddlewaretoken', getCookie('csrftoken'))
 
-    return fetch(DOMAIN +"auth-token/", {
+    return fetch(DOMAIN + "auth-token/", {
             method: "POST",
             credentials: "same-origin",
             body: formData

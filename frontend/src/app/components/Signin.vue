@@ -1,4 +1,4 @@
-<template>
+<template>    
     <div id="form-signup">
         <div class="form-signup__container">
             <h2 class="form-header">Sign up</h2>

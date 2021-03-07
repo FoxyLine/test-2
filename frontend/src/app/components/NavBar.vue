@@ -18,8 +18,6 @@
               <li v-if="token == null" class="nav-item">
                 <router-link class="nav-link" to="/signin">Sign In</router-link>   
               </li>
-            
-
           </ul>
         </div>
       </nav>
