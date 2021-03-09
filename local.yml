@@ -49,3 +49,14 @@ services:
     ports:
       - "7000:7000"
     command: /start-docs
+
+  vuejs:
+    build:
+      context: .
+      dockerfile: compose/local/vuejs/Dockerfile
+    image: kanban_vuejs_local
+    container_name: vuejs_dev
+    volumes: 
+      - ./frontend:/app:z
+    ports: 
+      - 8080:8080
