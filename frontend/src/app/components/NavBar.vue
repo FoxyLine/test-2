@@ -27,12 +27,14 @@
 </template>
 
 <script>
+import { getCookie } from './utils';
+
 export default {
     name: "NavBar",
     data: function() {
         return {
             text: "text",
-            token: localStorage.getItem('token') || null
+            token: getCookie('csrftoken') || null
 
         }
     },

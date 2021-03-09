@@ -279,3 +279,7 @@ kanban/media/
 # npm build config
 !frontend/build
 
+# vuejs build
+frontend/dist
+
+local.yml
