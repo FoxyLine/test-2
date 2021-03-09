@@ -275,3 +275,7 @@ kanban/media/
 .ipython/
 # .env
 # .envs/*
+
+# npm build config
+!frontend/build
+
