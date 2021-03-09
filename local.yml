@@ -57,6 +57,9 @@ services:
     image: kanban_vuejs_local
     container_name: vuejs_dev
     volumes: 
-      - ./frontend:/app:z
+      - ./frontend/src:/frontend/src:z
+      - ./frontend/dist:/frontend/dist:z
     ports: 
       - 8080:8080
+    command: /start
+    

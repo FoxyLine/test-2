@@ -1,11 +1,15 @@
 FROM node:carbon
 
-WORKDIR /app
+WORKDIR /frontend
 
-COPY ./frontend/ ./
+COPY ./frontend /frontend
+EXPOSE 8080
+
 RUN npm install
 
-EXPOSE 8080
+COPY ./compose/local/vuejs/start /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
 
 CMD ["npm", "run", "dev"]
 
