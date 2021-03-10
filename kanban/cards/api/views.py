@@ -36,7 +36,6 @@ class CardListViewSet(ViewSet):
 
         return Response(res, status=200)
 
-    @csrf_exempt
     def create(self, request):
         serializer = CardDetailSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -44,14 +43,12 @@ class CardListViewSet(ViewSet):
 
         return Response(serializer.data)
 
-    @csrf_exempt
     def destroy(self, request, pk=None):
         card = get_object_or_404(Card, pk=pk)
         card.delete()
         return Response(card.id, status=200)
 
     @action(detail=True, methods=["PUT"])
-    @csrf_exempt
     def change_desk(self, request, pk=None):
         card = get_object_or_404(Card, pk=pk)
 

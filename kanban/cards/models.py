@@ -34,7 +34,6 @@ class Card(models.Model):
         super(Card, self).save(*args, **kwargs)
 
     def set_order(self, order):
-        print(order)
         if order is not None:
             lower_order = Card.objects.filter(order__gte=order, type=self.type)
 
